@@ -2,13 +2,6 @@ import file_operations
 from faker import Faker
 import random
 
-strength = random.randint(3, 19)
-power = random.randint(3, 19)
-agility = random.randint(3, 19)
-endurance = random.randint(3, 19)
-intelligence = random.randint(3, 19)
-luck = random.randint(3, 19)
-
 runes = {
     'а': 'а͠', 'б': 'б̋', 'в': 'в͒͠',
     'г': 'г͒͠', 'д': 'д̋', 'е': 'е͠',
@@ -35,42 +28,61 @@ runes = {
     ' ': ' '
 }
 
-skill_list = ['Стремительный прыжок', 'Электрический выстрел', 'Ледяной удар', 'Стремительный удар', 'Кислотный взгляд',
-'Тайный побег','Ледяной выстрел','Огненный заряд']
+for i in range(10):
+    strength = random.randint(3, 19)
+    power = random.randint(3, 19)
+    agility = random.randint(3, 19)
+    endurance = random.randint(3, 19)
+    intelligence = random.randint(3, 19)
+    luck = random.randint(3, 19)
 
-styled_skills = []
-for skill in skill_list:
-    styled_skill = ''
-    for char in skill:
-        if char in runes:
-            styled_skill += runes[char]
-            styled_skills.append(styled_skill)
-k = 3
-skills = random.sample(skill_list, k)
-skill_dict = {
-    'skill_1': styled_skills[0],
-    'skill_2': styled_skills[1],
-    'skill_3': styled_skills[2]
-}
-fake = Faker('ru_RU')
-fake_name = fake.first_name_male()
-fake_surname = fake.last_name()
-fake_city = fake.city()
-fake_job = fake.job()
-context = {
-    'first_name':fake_name,
-    'last_name':fake_surname,
-    'job':fake_job,
-    'town':fake_city,
-    'strength':strength,
-    'power':power,
-    'agility':agility,
-    'endurance':endurance,
-    'intelligence':intelligence,
-    'luck':luck,
-    'skill_1':styled_skills[0],
-    'skill_2':styled_skills[1],
-    'skill_3':styled_skills[2]
-}
+    skill_list = ['Стремительный прыжок', 'Электрический выстрел', 'Ледяной удар', 'Стремительный удар',
+                  'Кислотный взгляд',
+                  'Тайный побег', 'Ледяной выстрел', 'Огненный заряд']
 
-file_operations.render_template('charsheet.svg', 'person_characteristics.svg', context)
+    k = 3
+    skills = random.sample(skill_list, k)
+
+    styled_skills = []
+    for skill in skills:
+        styled_skill = ''
+        for char in skill:
+            if char in runes:
+                styled_skill += runes[char]
+            else:
+                styled_skill += char
+        styled_skills.append(styled_skill)
+
+    print("Выбранные навыки:", skills)
+    print("Стилизованные навыки:", styled_skills)
+
+    skill_dict = {
+        'skill_1': styled_skills[0],
+        'skill_2': styled_skills[1],
+        'skill_3': styled_skills[2]
+    }
+
+    fake = Faker('ru_RU')
+    fake_name = fake.first_name_male()
+    fake_surname = fake.last_name()
+    fake_city = fake.city()
+    fake_job = fake.job()
+
+    context = {
+        'first_name': fake_name,
+        'last_name': fake_surname,
+        'job': fake_job,
+        'town': fake_city,
+        'strength': strength,
+        'power': power,
+        'agility': agility,
+        'endurance': endurance,
+        'intelligence': intelligence,
+        'luck': luck,
+        'skill_1': styled_skills[0],
+        'skill_2': styled_skills[1],
+        'skill_3': styled_skills[2]
+    }
+    svg_content = file_operations.render_template('charsheet.svg', 'charsheet-0.svg', context)
+    card = open('charsheet.svg', 'w')
+

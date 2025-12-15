@@ -3,10 +3,6 @@ from faker import Faker
 import random
 
 fake = Faker('ru_RU')
-FAKE_NAME = fake.first_name_male()
-FAKE_SURNAME = fake.last_name()
-FAKE_CITY = fake.city()
-FAKE_JOB = fake.job()
 
 runes = {
     'а': 'а͠',
@@ -78,6 +74,10 @@ runes = {
 }
 def main():
     for i in range(10):
+        fake_name = fake.first_name_male()
+        fake_surname = fake.last_name()
+        fake_city= fake.city()
+        fake_job = fake.job()
         strength = random.randint(3, 19)
         power = random.randint(3, 19)
         agility = random.randint(3, 19)

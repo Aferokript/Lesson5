@@ -92,7 +92,8 @@ def main():
                       'Кислотный взгляд',
                       'Тайный побег',
                       'Ледяной выстрел',
-                      'Огненный заряд']
+                      'Огненный заряд'
+        ]
 
         k = 3
         skills = random.sample(skill_list, k)
@@ -108,10 +109,10 @@ def main():
             styled_skills.append(styled_skill)
 
         context = {
-            'first_name': FAKE_NAME,
-            'last_name': FAKE_SURNAME,
-            'job': FAKE_JOB,
-            'town': FAKE_CITY,
+            'first_name': fake_name,
+            'last_name': fake_surname,
+            'job': fake_job,
+            'town': fake_city,
             'strength': strength,
             'power': power,
             'agility': agility,
@@ -123,7 +124,7 @@ def main():
             'skill_3': styled_skills[2]
         }
 
-        svg_content = file_operations.render_template('svg_files/charsheet.svg', f'svg_files/charsheet-{i}.svg',
+        file_operations.render_template('svg_files/charsheet.svg', f'svg_files/charsheet-{i}.svg',
                                                       context)
 if __name__ == '__main__':
     main()

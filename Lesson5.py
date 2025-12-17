@@ -77,7 +77,7 @@ def main():
     for i in range(10):
         fake_name = fake.first_name_male()
         fake_surname = fake.last_name()
-        fake_city= fake.city()
+        fake_city = fake.city()
         fake_job = fake.job()
         strength = random.randint(3, 19)
         power = random.randint(3, 19)
@@ -86,16 +86,16 @@ def main():
         intelligence = random.randint(3, 19)
         luck = random.randint(3, 19)
 
-       skill_list = [
-           'Стремительный прыжок',
-           'Электрический выстрел',
-           'Ледяной удар',
-           'Стремительный удар',
-           'Кислотный взгляд',
-           'Тайный побег',
-           'Ледяной выстрел',
-           'Огненный заряд'
-]
+        skill_list = [
+            'Стремительный прыжок',
+            'Электрический выстрел',
+            'Ледяной удар',
+            'Стремительный удар',
+            'Кислотный взгляд',
+            'Тайный побег',
+            'Ледяной выстрел',
+            'Огненный заряд'
+        ]
 
         k = 3
         skills = random.sample(skill_list, k)
@@ -127,8 +127,10 @@ def main():
         }
 
         file_operations.render_template('svg_files/charsheet.svg', f'svg_files/charsheet-{i}.svg',
-                                                      context)
+                                        context)
 if __name__ == '__main__':
     main()
+
+
 
 
